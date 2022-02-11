@@ -7,9 +7,13 @@ if(isset($_POST["btnLogar"]))
     $usuario = new Usuario(array(
                                 "emailusuario" => $_POST["login"],
                                 "senhausuario" => $_POST["senha"]
-                            ), $conexao);
+                            ), new ConexaoMySql());
     if($usuario->login())
     {
         $funcoes->redireciona("../admin", []);
+    } 
+    else
+    {
+        $funcoes->redireciona("../login", []);  
     }
 }

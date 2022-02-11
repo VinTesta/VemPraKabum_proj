@@ -9,7 +9,8 @@ class Usuario
     public $_nome;
     private $_conn;
 
-    public function __construct($params, $conn)
+    #region CONSTRUTOR
+    public function __construct($params, ConexaoInterface $conn)
     {
         $this->_conn = $conn;
         $this->_idusuario = isset($params["idusuario"]) ? $params["idusuario"] : NULL;
@@ -17,14 +18,16 @@ class Usuario
         $this->_senha = isset($params["senhausuario"]) ? $params["senhausuario"] : NULL;
         $this->_nome = isset($params["nomeusuario"]) ? $params["nomeusuario"] : NULL;
     }
+    #endregion
 
+    #region LOGIN
     public function login()
     {
         $ur = new UsuarioRepository($this->_conn);
 
         $usuario_db = new Usuario($ur->selectEmailUsuario($this->_email), $this->_conn);
-
-        if($usuario_db->_email != null && password_verify('teste', $usuario_db->_senha))
+        
+        if($usuario_db->_email != null && password_verify($this->_senha, $usuario_db->_senha))
         {
             session_start();
             $_SESSION["login"] = $usuario_db->_email;
@@ -32,7 +35,15 @@ class Usuario
             
             return true;
         }
+        else
+        {
+            session_start();
+            session_destroy();
+            
+            return false;
+        }
     }
+    #endregion
 }
 #endregion
 
@@ -44,7 +55,7 @@ class UsuarioRepository
     #endregion
 
     #region CONSTRUTOR
-    public function __construct($conn)
+    public function __construct(ConexaoInterface $conn)
     {
         $this->_conn = $conn;
     }
@@ -88,14 +99,19 @@ class UsuarioRepository
     public function selectEmailUsuario($emailusuario)
     {
         $query = $this->select();
+        $conexao = $this->_conn->conecta();
+
         $query = str_replace("&SELECT&", "SELECT", $query);
         $query = str_replace("&usuario&", "usuario WHERE emailusuario = ?", $query);
         
-        $stmt = mysqli_prepare($this->_conn, $query);
-        $stmt->bind_param("s", $emailusuario);
+        $stmt = $conexao->prepare($query);
+        $stmt->bindParam(1, $emailusuario);
         $stmt->execute();
-        $resultado = mysqli_fetch_assoc($stmt->get_result());
-        $stmt->close();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // FECHA CONEXÃO
+        $this->_conn = null;
+        $conexao = null;
 
         return $resultado;
     }
