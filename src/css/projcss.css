@@ -1,0 +1,66 @@
+*
+{
+
+}
+
+#containerLogin {
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: rgb(73, 73, 73);
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}
+
+#boxLogin {
+    color: white;
+    margin-bottom: 100px;
+}
+
+#boxLogin form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#boxLogin h5 {
+    text-align: center;
+    width: 100%;
+}
+
+.input-login {
+    background-color: rgba(0, 0, 0, 0.253);
+    border: none;
+    color: white;
+}
+
+.input-login:focus {
+    background-color: rgba(0, 0, 0, 0.507);
+    box-shadow: none;
+    border: 1px solid rgb(119, 119, 119);
+    color: white;
+}
+
+#btnLogar {
+    width: 100%;
+}
+
+#logoErp
+{
+    text-align: center;
+}
+
+#footerLogin {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.411);
+    height: 100px;
+    color: white;
+}

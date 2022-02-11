@@ -1,0 +1,15 @@
+{
+    "name": "vintesta/vem_pra_kabum_proj",
+    "autoload": {
+        "psr-4": {
+            "Vintesta\\VemPraKabumProj\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VinTesta",
+            "email": "70596205+VinTesta@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

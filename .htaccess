@@ -1,0 +1,7 @@
+#habilitando a reescrita---------------------------------------------------------
+RewriteEngine On
+
+#ERROS --------------------------------------------------------------------------
+
+RewriteRule    ^admin/?$    view/admin-home.php    [QSA,NC,L]
+RewriteRule    ^login/?$    view/login.php    [QSA,NC,L]
