@@ -1,3 +1,8 @@
+    </div>
+    <div class="footer">
+        &copy; Vinicius Testa Passos
+    </div>
+
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- BOOTSTRAP -->
@@ -6,6 +11,10 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     
+    <script src="src/js/projjs.js"></script>
+    <!-- JQUERY MASK -->
+    <script src="src/js/jquery.mask.min.js"></script>
+    <script src="src/js/jquery.mask.js"></script>
 </body>
 </html>
 <?php

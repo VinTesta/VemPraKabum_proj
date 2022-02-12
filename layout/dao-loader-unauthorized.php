@@ -7,7 +7,6 @@
 
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . "../config/conexao.php");
-require_once(__ROOT__ . "../util/funcoes.php");
 
 function carregaClasseModel($nomeDaClasse) {
     require_once ("../model/" . $nomeDaClasse . ".php");
@@ -15,6 +14,7 @@ function carregaClasseModel($nomeDaClasse) {
 
 spl_autoload_register("carregaClasseModel");
 
-logado();
+session_start();
+session_destroy();
 
 ?>

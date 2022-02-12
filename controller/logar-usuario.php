@@ -1,19 +1,28 @@
 <?php
-require_once("../layout/dao-loader.php");
+require_once("../layout/dao-loader-unauthorized.php");
 
 if(isset($_POST["btnLogar"]))
 {
-    $funcoes = new Funcoes();
-    $usuario = new Usuario(array(
-                                "emailusuario" => $_POST["login"],
-                                "senhausuario" => $_POST["senha"]
-                            ), new ConexaoMySql());
-    if($usuario->login())
-    {
-        $funcoes->redireciona("../admin", []);
-    } 
-    else
-    {
-        $funcoes->redireciona("../login", []);  
+    $ud = new UsuarioDao(new ConexaoMySql);
+
+    try
+    {             
+        if($ud->login($_POST)) 
+        {
+            $status =  1;
+            $msg = "Login realizado com sucesso!";
+        } 
+        else
+        {
+            $status =  0;
+            $msg = "Login ou senha invalidos! Tente novamente!";
+        }
     }
+    catch(Exception $ex)
+    {   
+        $status = 0;
+        $msg = "Ocorreu um erro ao efetuar login: ".$ex;
+    }
+    
+    echo json_encode(array("status"=> $status, "mensagem"=> $msg));
 }

@@ -1,5 +1,6 @@
 <?php
-require_once("../layout/dao-loader.php");
+require_once("../layout/dao-loader-unauthorized.php");
+require_once("../layout/toast-alert.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,26 +25,26 @@ require_once("../layout/dao-loader.php");
     <link rel="stylesheet" href="src/css/projcss.css">
 </head>
 <body>
-
-    <div id="containerLogin">
-        <div id="boxLogin" class="col-lg-3 col-12">
-            <form method="post" action="controller/logar-usuario.php">
-                <div id="boxLogin" class="col-10">
-                    <h3 id="logoErp">ADMIN PANEL</h3>
-                    <h3 id="logoErp">LOGIN</h3>
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="login" name="login" class="form-control mb-4 input-login" />
-                    <label for="senha">Senha: </label>
-                    <input type="password" class="form-control mb-4 input-login" name="senha" id="senha" />
-                    <button type="submit" name="btnLogar" class="btn btn-primary mb-3 col-12">Login</button>
-                    <div id="footerLogin">
-                        &copy; Vinicius Testa Passos
+    <div class="bodyContainer">
+        <div id="containerLogin">
+            <div id="boxLogin" class="col-lg-3 col-12">
+                <div id="form">
+                    <div id="boxLogin" class="col-10">
+                        <h3 id="logoErp">ADMIN PANEL</h3>
+                        <h3 id="logoErp">LOGIN</h3>
+                        <label for="email">Usuario:</label>
+                        <input type="text" id="email" name="email" class="form-control validate-form mb-4 input-login" />
+                        <label for="senha">Senha: </label>
+                        <input type="password" class="form-control validate-form mb-4 input-login" name="senha" id="senha" />
+                        <button name="btnLogar" id="btnLogar" class="btn btn-primary mb-3 col-12">Login</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    
+    <div class="footer">
+        &copy; Vinicius Testa Passos
+    </div>
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- BOOTSTRAP -->
@@ -51,5 +52,11 @@ require_once("../layout/dao-loader.php");
     <!-- DATATABLE JS -->
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script src="src/js/projjs.js"></script>
+    
+    <!-- JQUERY MASK -->
+    <script src="src/js/jquery.mask.min.js"></script>
+    <script src="src/js/jquery.mask.js"></script>
 </body>
 </html>

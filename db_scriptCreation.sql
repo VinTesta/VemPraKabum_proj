@@ -29,10 +29,20 @@ CREATE TABLE endereco
     bairro VARCHAR(255) NOT NULL,
     cidade VARCHAR(70) NOT NULL,
     estado VARCHAR(2) NOT NULL,
-	pais VARCHAR(70) NOT NULL,
-    cliente_idcliente INT NOT NULL
+	pais VARCHAR(70) NOT NULL
 );
 
-ALTER TABLE endereco ADD CONSTRAINT cliente_idcliente FOREIGN KEY ( cliente_idcliente ) REFERENCES cliente ( idcliente );
+CREATE TABLE clienteendereco
+(
+	idClienteEndereco INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cliente_idcliente INT NOT NULL,
+    endereco_idendereco INT NOT NULL
+);
+
+ALTER TABLE clienteendereco ADD CONSTRAINT cliente_idcliente FOREIGN KEY ( cliente_idcliente ) REFERENCES cliente ( idcliente );
+ALTER TABLE clienteendereco ADD CONSTRAINT endereco_idendereco FOREIGN KEY ( endereco_idendereco ) REFERENCES endereco ( idendereco );
 
 SELECT * FROM endereco;
+SELECT * FROM usuario;
+SELECT * FROM cliente;
+SELECT * FROM clienteendereco;

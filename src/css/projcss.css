@@ -1,11 +1,22 @@
 *
 {
+    margin: 0;
+    padding: 0;
+}
 
+body
+{
+    background-color: rgba(211, 211, 211, 0.562);
+}
+
+.bodyContainer
+{
+    min-height: 90vh;
 }
 
 #containerLogin {
-    min-height: 100vh;
-    min-width: 100%;
+    height: 100%;
+    width: 100%;
     background-color: rgb(73, 73, 73);
     display: flex;
     justify-content: center;
@@ -14,10 +25,9 @@
 
 #boxLogin {
     color: white;
-    margin-bottom: 100px;
 }
 
-#boxLogin form {
+#boxLogin #form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,15 +62,40 @@
     text-align: center;
 }
 
-#footerLogin {
+.footer {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.411);
-    height: 100px;
+    height: 10vh;
     color: white;
+}
+
+.toast
+{
+    z-index: 2500;
+}
+
+#boxSpinner 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+}
+
+#tabelaClientes
+{
+    background-color: rgba(0, 0, 0, 0.123);
+    border-radius: 5px;
+}
+
+.invalidValue
+{
+    border: 1px solid red;
 }

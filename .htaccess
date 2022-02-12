@@ -5,3 +5,4 @@ RewriteEngine On
 
 RewriteRule    ^admin/?$    view/admin-home.php    [QSA,NC,L]
 RewriteRule    ^login/?$    view/login.php    [QSA,NC,L]
+RewriteRule    ^pesquisa-cliente/?$    view/cliente-form-pesquisa.php    [QSA,NC,L]

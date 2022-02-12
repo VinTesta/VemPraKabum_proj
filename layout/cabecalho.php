@@ -1,11 +1,7 @@
 <?php
 require_once("dao-loader.php");
-
-$funcoes = new Funcoes();
-$funcoes->logado();
-
+require_once("../layout/toast-alert.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,21 +21,24 @@ $funcoes->logado();
 
     <!-- BOXICONS -->
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+
+    <link rel="stylesheet" href="src/css/projcss.css">
 </head>
 <body>
+  <div class="bodyContainer">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="fas fa-cogs"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Clientes</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="fas fa-cogs"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="pesquisa-cliente">Clientes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>  
