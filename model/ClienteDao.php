@@ -1,5 +1,5 @@
 <?php
-require_once("../util/funcoes.php");
+require_once("../layout/dao-loader.php");
 #region CLIENTEDAO
 class ClienteDao
 {
@@ -24,12 +24,7 @@ class ClienteDao
     public function select()
     {
         return "&SELECT&
-                        cliente.idcliente
-                       ,cliente.nomecliente
-                       ,cliente.datanascimento
-                       ,cliente.cpf
-                       ,cliente.rg
-                       ,cliente.telefone
+                        *
                     FROM
                         &cliente&";
     }
@@ -44,30 +39,25 @@ class ClienteDao
 
         $conexao = $this->_conn;
         $query = $this->select();
-
         $camposVal = $this->verificaCamposBuscaCliente($campos);
 
         // ADICIONA OS CAMPOS NECESSARIOS DO RETORNO
         $query = str_replace("&SELECT&", $camposVal["retornosQuery"], $query);
-
         // ADICIONA OS CAMPOS NECESSARIOS A BUSCA
         $query = str_replace("&cliente&", $camposVal["camposQuery"], $query);
 
         $stmt = $conexao->prepare($query);
-        echo $query;
-        var_dump($camposVal["params"]);
         foreach($camposVal["params"] as $key => $value)
         {
-            $key++;
-            $stmt->bindParam($key, $value);
+            $stmt->bindValue($key, $value);
         }
-        $stmt->execute();
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
         // FECHA CONEXÃO
         $conexao = null;
 
-        var_dump($resultado);
         return $resultado;
     }
     #endregion
@@ -82,47 +72,42 @@ class ClienteDao
 
         if($campos["nomecliente"] != "")
         {
-            $camposQuery .= " AND nomecliente LIKE ?";
+            $camposQuery .= " AND nomecliente LIKE :nomecliente";
             $retornosQuery .= "";
-            $params[$cont] = "%".filtraCampos($campos["nomecliente"], 2)."%";
+            $params[":nomecliente"] = "%".filtraCampos($campos["nomecliente"], 2)."%";
 
-            $cont++;
         }
 
         if($campos["cpf"] != "")
         {
-            $camposQuery .= " AND cpf LIKE ?";
+            $camposQuery .= " AND cpf LIKE :cpf";
             $retornosQuery .= "";
-            $params[$cont] = "%".filtraCampos($campos["cpf"], 3)."%";
+            $params[":cpf"] = "%".filtraCampos($campos["cpf"], 3)."%";
 
-            $cont++;
         }
 
         if($campos["dataNascimento"] != "")
         {
-            $camposQuery .= " AND dataNascimento = ?";
+            $camposQuery .= " AND dataNascimento = :dtNascimento";
             $retornosQuery .= "";
-            $params[$cont] = filtraCampos($campos["dataNascimento"], 5);
+            $params[":dtNascimento"] = filtraCampos($campos["dataNascimento"], 5);
 
-            $cont++;
         }
 
         if($campos["rg"] != "")
         {
-            $camposQuery .= " AND rg LIKE ?";
+            $camposQuery .= " AND rg LIKE :rg";
             $retornosQuery .= "";
-            $params[$cont] = "%".filtraCampos($campos["rg"], 3)."%";
+            $params[":rg"] = "%".filtraCampos($campos["rg"], 3)."%";
 
-            $cont++;
         }
 
         if($campos["telefone"] != "")
         {
-            $camposQuery .= " AND telefone LIKE ?";
+            $camposQuery .= " AND telefone LIKE :telefone";
             $retornosQuery .= "";
-            $params[$cont] = "%".filtraCampos($campos["telefone"], 3)."%";
+            $params[":telefone"] = "%".filtraCampos($campos["telefone"], 3)."%";
 
-            $cont++;
         }
 
         return array(

@@ -1,4 +1,5 @@
 <?php
+require_once("../util/funcoes.php");
 #region USUARIODAO
 class UsuarioDao
 {
@@ -63,10 +64,7 @@ class UsuarioDao
     public function select()
     {
         return "&SELECT& 
-                        usuario.idusuario
-                       ,usuario.nomeusuario
-                       ,usuario.emailusuario
-                       ,usuario.senhausuario
+                        *
                     FROM 
                         &usuario&";        
     }
@@ -81,8 +79,9 @@ class UsuarioDao
         $query = str_replace("&SELECT&", "SELECT", $query);
         $query = str_replace("&usuario&", "usuario WHERE emailusuario = ?", $query);
         
+        $paramBusca = filtraCampos($emailusuario, 1);
         $stmt = $conexao->prepare($query);
-        $stmt->bindParam(1, filtraCampos($emailusuario, 1));
+        $stmt->bindParam(1, $paramBusca);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 

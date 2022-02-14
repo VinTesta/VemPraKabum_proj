@@ -80,6 +80,14 @@ body
     z-index: 2500;
 }
 
+#containerSpinner 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 #boxSpinner 
 {
     display: flex;
@@ -89,13 +97,22 @@ body
     height: 75px;
 }
 
-#tabelaClientes
+#boxTabelaCliente
 {
-    background-color: rgba(0, 0, 0, 0.123);
-    border-radius: 5px;
+    overflow-x: auto;
 }
 
 .invalidValue
 {
     border: 1px solid red;
+}
+
+.tab-pane.fade
+{
+    display: none;
+}
+
+.tab-pane.fade.active
+{
+    display: block;
 }

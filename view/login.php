@@ -22,7 +22,7 @@ require_once("../layout/toast-alert.php");
     <!-- BOXICONS -->
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 
-    <link rel="stylesheet" href="src/css/projcss.css">
+    <link rel="stylesheet" href="web/css/projcss.css">
 </head>
 <body>
     <div class="bodyContainer">
@@ -53,10 +53,10 @@ require_once("../layout/toast-alert.php");
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     
-    <script src="src/js/projjs.js"></script>
+    <script src="web/js/projjs.js"></script>
     
     <!-- JQUERY MASK -->
-    <script src="src/js/jquery.mask.min.js"></script>
-    <script src="src/js/jquery.mask.js"></script>
+    <script src="web/js/jquery.mask.min.js"></script>
+    <script src="web/js/jquery.mask.js"></script>
 </body>
 </html>

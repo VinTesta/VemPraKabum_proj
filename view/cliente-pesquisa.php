@@ -2,10 +2,10 @@
 require_once("../layout/cabecalho.php");
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="shadow p-3 mb-5 mt-5 bg-body rounded text-center h3">Tabela de Clientes</div>
+            <div class="shadow p-3 mb-4 mt-4 bg-body rounded text-center h3">Tabela de Clientes</div>
         </div>
     </div>
     <div class="row mb-2">
@@ -63,14 +63,11 @@ require_once("../layout/cabecalho.php");
         </div>
     </div>
     
-    <div class="row mb-4">
+    <div class="row mb-4" id="containerTabelaClientes">
         <div class="col-md-12">
-            <div id="tabelaClientes" class="d-flex justify-content-center align-center">
-                <!-- <div class="shadow p-3 m-2 bg-body rounded" id="boxSpinner">
-                    <div class="spinner-border text-secondary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div> -->
+            <div class="bg-body rounded d-flex justify-content-center align-center">
+                <div id="boxTabelaCliente" class="col-12">
+                </div>
             </div>
         </div>
     </div>

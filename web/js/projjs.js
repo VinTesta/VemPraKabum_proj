@@ -85,18 +85,28 @@ $(document).ready(() =>
             telefone: $("#telefoneCliente").cleanVal()
         });
     })
+
+    //#region DISPARA O EVENTO NO LOAD DA PAGINA
+    $("#boxTabelaCliente").ready(() => {
+        console.log("teste");
+        $("#btnPesquisaCliente").trigger("click");
+    })
+    //#endregion
     //#endregion
 
     //#region PESQUISACLIENTE
+
     function pesquisaCliente(campos)
     {
+        $("#boxTabelaCliente").html(getLoader());
         $.ajax({
             url: "util/tabela-cliente.php",
             type: "post",
             data: campos,
             success: (res) =>
             {
-                console.log(res);
+                $("#boxTabelaCliente").html(res);
+                $("#boxTabelaCliente").addClass("p-4");
             },
             error: (erro) => 
             {
@@ -104,6 +114,7 @@ $(document).ready(() =>
             }
         })
     }
+    
     //#endregion
 
     //#region MOSTRAR MENSAGEM
@@ -128,5 +139,40 @@ $(document).ready(() =>
             localStorage.setItem("alerta", "");
         }
     }
+    //#endregion
+
+    //#region LOADER DA PESQUISA
+    function getLoader()
+    {
+        return `<div id="containerSpinner">
+                    <div class="shadow p-3 m-2 bg-body rounded" id="boxSpinner">
+                        <div class="spinner-border text-secondary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>`;
+    }
+    //#endregion
+
+    //#region BOTÃO PARA PULAR PAGINAS CLIENTE
+    $(document).on("click", "#btnEnderecoCliente", () => 
+    {
+        $("#endereco-tab").trigger("click")
+    })
+
+    $(document).on("click", "#btnInformacoesBasicasCliente", () => 
+    {
+        $("#infoBasica-tab").trigger("click")
+    })
+    //#endregion
+
+    //#region BOTÃO PARA ADICIONAR ENDEREÇO DO CLIENTE
+    $(document).on("click", "#btnAddEndereco", () => {
+        
+    })
+
+    //#endregion
+    
+    //#region CARREGAR INFORMAÇÕES CLIENTE
     //#endregion
 })

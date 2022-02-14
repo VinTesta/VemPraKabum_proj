@@ -1,0 +1,18 @@
+[
+    {
+        "idcliente": "1",
+        "nomecliente": "ANTONIO SILVA",
+        "datanascimento": "2000-04-24",
+        "cpf": "1233211233",
+        "rg": "122113213",
+        "telefone": "19984455445"
+    },
+    {
+        "idcliente": "2",
+        "nomecliente": "GABRIEL ANTONELO",
+        "datanascimento": "2002-10-15",
+        "cpf": "1632165465",
+        "rg": "171717177",
+        "telefone": "19988654654"
+    }
+]

@@ -15,11 +15,11 @@ class Cliente
     #region CONSTRUTOR
     public function __construct($params)
     {
-        $this->_idcliente = $params["idusuidclienteario"];
-        $this->_nome = $params["nome"];
+        $this->_idcliente = $params["idcliente"];
+        $this->_nome = $params["nomecliente"];
         $this->_rg = $params["rg"];
         $this->_cpf = $params["cpf"];
-        $this->_dataNascimento = $params["dataNascimento"];
+        $this->_dataNascimento = $params["datanascimento"];
         $this->_telefone = $params["telefone"];
     }
     #endregion

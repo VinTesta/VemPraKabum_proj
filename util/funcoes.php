@@ -41,4 +41,10 @@ function logado()
         ? true
         : redireciona("http://localhost/vemprakabum_proj/login", []);
 }
+
+function geraCodigo() {//função para gerar um código a partir do sha1 da hora atual  
+    $cod = sha1(microtime());
+    return $cod;
+}
+
 ?>

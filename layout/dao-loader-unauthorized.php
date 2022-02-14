@@ -7,6 +7,7 @@
 
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . "../config/conexao.php");
+require_once(__ROOT__ . "../config/funcoes.php");
 
 function carregaClasseModel($nomeDaClasse) {
     require_once ("../model/" . $nomeDaClasse . ".php");
