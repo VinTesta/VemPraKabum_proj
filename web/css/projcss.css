@@ -116,3 +116,8 @@ body
 {
     display: block;
 }
+
+#btnRemoveEndereco i
+{
+    pointer-events: none;
+}

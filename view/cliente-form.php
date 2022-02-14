@@ -1,27 +1,12 @@
 <?php
 require_once("../layout/cabecalho.php");
-
-// O POST É PARA QUANDO VEM DA PESQUISA QUE É PASSADO PARA O cliente-form.php
-// QUE IMPLEMENTA ESSE ARQUIVO
-// if(isset($_POST["cont"]))
-// {
-//     $clienteFactory = new ClienteFactory();
-//     $cliente = $clienteFactory->criaCliente($_SESSION["lista_cliente".$_POST["id_pesquisa"]][$_POST["cont"]]);
-
-//     $controller = "controller/altera-cliente.php";
-// }
-// else
-// {
-//     $controller = "controller/adiciona-cliente.php";
-//     $_POST['cont'] = "";
-//     $_POST['id_pesquisa'] = "";
-// }
-
+// $_POST["cont"] = 0;
+// $_POST["id_pesquisa"] = "6e888d58fff77cd44215d485a610ccdafbedfe6a";
 ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="shadow p-3 mb-4 mt-4 bg-body rounded text-center h3">CADASTRO CLIENTE</div>
+            <div class="shadow p-3 mb-4 mt-4 bg-body rounded text-center h3"><?= isset($_POST['cont']) ? 'ALTERAR' : 'CADASTRAR' ?> CLIENTE</div>
         </div>
     </div>
     <div class="row">
@@ -36,10 +21,10 @@ require_once("../layout/cabecalho.php");
             </ul>
             <div class="tab-content bg-body pt-4" id="myTabContent">
 
-                <form action="controller/adiciona-cliente.php" id="formularioCliente" method="post">
+                <form action="controller/<?= isset($_POST['cont']) ? 'altera-cliente.php' : 'adiciona-cliente.php' ?>" id="formularioCliente" method="post">
                     <div class="tab-pane fade show active" id="infoBasica" role="tabpanel" aria-labelledby="infoBasica-tab">
                         <?php
-                            require_once("../view/cliente-form-infoBasicas.php");
+                            require_once("../util/formulario-cliente-infoBasicas.php");
                         ?>
                         <div class="row mb-4">
                             <div class="col d-flex justify-content-end align-center">
@@ -51,12 +36,12 @@ require_once("../layout/cabecalho.php");
                     </div>
                     <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
                         <?php
-                            require_once("../view/cliente-form-infoEndereco.php");
+                            require_once("../util/formulario-cliente-infoEndereco.php");
                         ?>
 
                         <div class="row mb-2">
                             <div class="col d-flex justify-content-center align-center">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" id="btnSalvarCliente">
                                     <i class="fas fa-save"></i> Salvar
                                 </button>
                             </div>

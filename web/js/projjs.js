@@ -2,13 +2,20 @@ $(document).ready(() =>
 {
     //#region DISPARA FUNÇÕES DE INICIALIZAÇÃO
     verificaAlerta();
+    adicionaMascaras();
     //#endregion
 
     //#region MASKS
-    $('.cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"});
-    $('.data').mask('00/00/0000', {placeholder: "__/__/____"});
-    $('.rg').mask('00.000.000-0', {placeholder: "__.___.___-_"});
-    $('.celular').mask('(00) 0 0000-0000', {placeholder: "(__) _ ____-____"})
+    function adicionaMascaras()
+    {
+        $('.cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"});
+        $('.data').mask('00/00/0000', {placeholder: "__/__/____"});
+        $('.rg').mask('00.000.000-0', {placeholder: "__.___.___-_"});
+        $('.celular').mask('(00) 0 0000-0000', {placeholder: "(__) _ ____-____"});
+        $('.cep').mask('00000-000', {placeholder: "_____-___"});
+        $('.numEnd').mask('00000', {placeholder: "_____"});
+        $('.uf').mask('AA', {placeholder: "_____"});
+    }
     //#endregion
 
     //#region id = btnLogar
@@ -86,12 +93,9 @@ $(document).ready(() =>
         });
     })
 
-    //#region DISPARA O EVENTO NO LOAD DA PAGINA
     $("#boxTabelaCliente").ready(() => {
-        console.log("teste");
         $("#btnPesquisaCliente").trigger("click");
     })
-    //#endregion
     //#endregion
 
     //#region PESQUISACLIENTE
@@ -166,13 +170,94 @@ $(document).ready(() =>
     })
     //#endregion
 
-    //#region BOTÃO PARA ADICIONAR ENDEREÇO DO CLIENTE
-    $(document).on("click", "#btnAddEndereco", () => {
-        
+    //#region CARREGAR ENDEREÇOS DO CLIENTE
+    $("#bodyCardEndereco").ready(() => {
+        var cont = $("#cont").val();
+        var id_pesquisa = $("#id_pesquisa").val();
+
+        geraCamposEnderecoCliente(cont, id_pesquisa, "#bodyCardEndereco");
+        adicionaMascaras();        
+    })
+    //#endregion
+
+    //#region BUSCA ENDERECO CEP
+    
+    $(document).on("focusout", "#cepEndCliente", (e) =>
+    {
+        buscaEnderecoViaCep(e.target.value);
     })
 
+    function buscaEnderecoViaCep(cep)
+    {
+        $.ajax({
+            url: "http://viacep.com.br/ws/"+cep+"/json/ ",
+            type: "get",
+            data: {},
+            success: (res) => {
+                console.log(res)
+            },
+            erro: (error) => 
+            {
+                console.log(error)
+            }
+        })
+    }
     //#endregion
-    
+
+    //#region GERAR CAMPOS DE ENDEREÇO DO CLIENTE
+    function geraCamposEnderecoCliente(cont, id_pesquisa, div)
+    {
+        var data = cont != "" ? {cont, id_pesquisa, opt: 1} : {opt: 1};
+
+        $.ajax({
+            type: "post",
+            url: "util/gera-campos.php",
+            data: data,
+            success: (res) => 
+            {
+                $(div).append(res);
+            },
+            erro: (error) =>
+            {
+                console.log(error);
+            }
+        })
+    }
+    //#endregion
+
+    //#region BOTÃO DE ADICIONAR CAMPO DE ENDERECO DO CLIENTE
+    $(document).on("click", "#btnAddEndereco", () => 
+    {
+        geraCamposEnderecoCliente("", "", "#bodyCardEndereco");
+    })
+    //#endregion
+ 
+    //#region REMOVE CAMPOS DE ENDEREÇO
+    $(document).on("click", "#btnRemoveEndereco", (e) =>
+    {
+        var removeid = e.target.dataset.removeid
+        removeCardCampos("#"+removeid)
+    })
+    function removeCardCampos(divFilho)
+    {
+        $(divFilho).remove();
+    }
+    //#endregion
+
     //#region CARREGAR INFORMAÇÕES CLIENTE
+    //#endregion
+
+    //#region BUTTON = btnSalvarCliente
+    $(document).on("click", "#btnSalvarCliente", (e) =>
+    {
+        e.preventDefault();
+
+        var erro = validaCampos(".force-check")
+
+        if(erro == true)
+        {
+            return false;
+        }
+    })
     //#endregion
 })

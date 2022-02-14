@@ -11,7 +11,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="bodyCardEndereco">
                     
                 </div>
             </div>
