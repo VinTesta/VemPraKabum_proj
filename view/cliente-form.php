@@ -2,6 +2,13 @@
 require_once("../layout/cabecalho.php");
 ?>
 <div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-start">
+            <a href="pesquisa-cliente" class="btn btn-primary">
+                <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="shadow p-3 mb-4 mt-4 bg-body rounded text-center h3"><?= isset($_POST['cont']) ? 'ALTERAR' : 'CADASTRAR' ?> CLIENTE</div>
