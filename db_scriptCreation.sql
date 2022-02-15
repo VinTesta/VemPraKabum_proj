@@ -29,7 +29,8 @@ CREATE TABLE endereco
     bairro VARCHAR(255) NOT NULL,
     cidade VARCHAR(70) NOT NULL,
     estado VARCHAR(2) NOT NULL,
-	pais VARCHAR(70) NOT NULL
+	pais VARCHAR(70) NOT NULL,
+    status char default(1) NOT NULL
 );
 
 CREATE TABLE enderecocliente

@@ -1,7 +1,5 @@
 <?php
 require_once("../layout/cabecalho.php");
-// $_POST["cont"] = 0;
-// $_POST["id_pesquisa"] = "6e888d58fff77cd44215d485a610ccdafbedfe6a";
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -21,7 +19,7 @@ require_once("../layout/cabecalho.php");
             </ul>
             <div class="tab-content bg-body pt-4" id="myTabContent">
 
-                <form action="controller/<?= isset($_POST['cont']) ? 'altera-cliente.php' : 'adiciona-cliente.php' ?>" id="formularioCliente" method="post">
+                <form action="controller/cadastro-cliente.php" id="formularioCliente" method="post">
                     <div class="tab-pane fade show active" id="infoBasica" role="tabpanel" aria-labelledby="infoBasica-tab">
                         <?php
                             require_once("../util/formulario-cliente-infoBasicas.php");
@@ -41,7 +39,7 @@ require_once("../layout/cabecalho.php");
 
                         <div class="row mb-2">
                             <div class="col d-flex justify-content-center align-center">
-                                <button class="btn btn-primary" id="btnSalvarCliente">
+                                <button class="btn btn-primary" name="btnSalvarCliente" id="btnSalvarCliente">
                                     <i class="fas fa-save"></i> Salvar
                                 </button>
                             </div>

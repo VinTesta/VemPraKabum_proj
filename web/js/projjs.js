@@ -11,10 +11,13 @@ $(document).ready(() =>
         $('.cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"});
         $('.data').mask('00/00/0000', {placeholder: "__/__/____"});
         $('.rg').mask('00.000.000-0', {placeholder: "__.___.___-_"});
-        $('.celular').mask('(00) 0 0000-0000', {placeholder: "(__) _ ____-____"});
+        $('.celular').mask('(00)00000-0000', {placeholder: "(__)_____-____"});
         $('.cep').mask('00000-000', {placeholder: "_____-___"});
         $('.numEnd').mask('00000', {placeholder: "_____"});
         $('.uf').mask('AA', {placeholder: "_____"});
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy'
+        });
     }
     //#endregion
 
@@ -91,10 +94,7 @@ $(document).ready(() =>
             rg: $("#rgCliente").cleanVal(),
             telefone: $("#telefoneCliente").cleanVal()
         });
-    })
-
-    $("#boxTabelaCliente").ready(() => {
-        $("#btnPesquisaCliente").trigger("click");
+        
     })
     //#endregion
 
@@ -171,13 +171,15 @@ $(document).ready(() =>
     //#endregion
 
     //#region CARREGAR ENDEREÇOS DO CLIENTE
-    $("#bodyCardEndereco").ready(() => {
+    if($("#bodyCardEndereco").is(":hidden"))
+    {
         var cont = $("#cont").val();
         var id_pesquisa = $("#id_pesquisa").val();
 
-        geraCamposEnderecoCliente(cont, id_pesquisa, "#bodyCardEndereco");
-        adicionaMascaras();        
-    })
+        geraCamposEnderecoCliente(cont, id_pesquisa, "#bodyCardEndereco", $("#bodyCardEndereco")[0].children.length);
+        adicionaMascaras();     
+    }
+    
     //#endregion
 
     //#region BUSCA ENDERECO CEP
@@ -205,9 +207,9 @@ $(document).ready(() =>
     //#endregion
 
     //#region GERAR CAMPOS DE ENDEREÇO DO CLIENTE
-    function geraCamposEnderecoCliente(cont, id_pesquisa, div)
+    function geraCamposEnderecoCliente(cont, id_pesquisa, div, contEnd)
     {
-        var data = cont != "" ? {cont, id_pesquisa, opt: 1} : {opt: 1};
+        var data = cont != "" ? {cont, id_pesquisa, opt: 1, contEnd} : {opt: 1, contEnd};
 
         $.ajax({
             type: "post",
@@ -228,7 +230,7 @@ $(document).ready(() =>
     //#region BOTÃO DE ADICIONAR CAMPO DE ENDERECO DO CLIENTE
     $(document).on("click", "#btnAddEndereco", () => 
     {
-        geraCamposEnderecoCliente("", "", "#bodyCardEndereco");
+        geraCamposEnderecoCliente("", "", "#bodyCardEndereco", $("#bodyCardEndereco")[0].children.length);
     })
     //#endregion
  
@@ -236,6 +238,7 @@ $(document).ready(() =>
     $(document).on("click", "#btnRemoveEndereco", (e) =>
     {
         var removeid = e.target.dataset.removeid
+
         removeCardCampos("#"+removeid)
     })
     function removeCardCampos(divFilho)
@@ -254,10 +257,53 @@ $(document).ready(() =>
 
         var erro = validaCampos(".force-check")
 
-        if(erro == true)
+        $("#contEndereco").val($("#bodyCardEndereco")[0].children.length)
+
+        erroCpf = validaDocumento("#cpf", 1)
+        erroRg = validaDocumento("#rg", 2).then((res) => {console.log(res)});
+
+        console.log(erroCpf)
+        console.log(erroRg)
+        if(erro == true || erroCpf == true || erroRg == true)
         {
+            console.log(teste);
+            mostraMensagem("Há campos vazis ou com inválidos! Tente novamente!");
             return false;
         }
+
+        return false;
+        $("#formularioCliente").submit();
     })
     //#endregion
+
+    //#region 
+    async function validaDocumento(campo, opt)
+    {   
+        var doc = $(campo).val();
+        var erro = 0;
+        return await Promise.resolve($.ajax({
+                    type: "post",
+                    url: "util/valida-campos.php",
+                    data: {opt, doc},
+                    success: (res) =>
+                    {
+                        if(res == 1)
+                        {
+                            $(campo).removeClass("invalidValue")
+                            erro = false;
+                        }
+                        else
+                        {
+                            erro = true;
+                            $(campo).addClass("invalidValue")
+                        }
+                        
+                        return erro;
+                    },
+                    erro: (error) => 
+                    {
+                        console.log(error);
+                    }
+                }))
+    }
 })

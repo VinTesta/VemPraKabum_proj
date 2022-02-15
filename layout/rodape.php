@@ -15,6 +15,9 @@
     <!-- JQUERY MASK -->
     <script src="web/js/jquery.mask.min.js"></script>
     <script src="web/js/jquery.mask.js"></script>
+    
+    <script src="web/js/bootstrap-datepicker.min.js"></script>
+    <script src="web/js/bootstrap-datepicker.pt-BR.min.js"></script>
 </body>
 </html>
 <?php

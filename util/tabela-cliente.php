@@ -9,17 +9,14 @@ if(isset($_POST["nomecliente"]))
 
         $pesquisaCliente = $clienteDao->buscaCliente($_POST);
 
-        $id_busca = geraCodigo();
+        $id_busca = $pesquisaCliente["id_pesquisa"];
+        $tamanho_json = count($pesquisaCliente["resultado"]);
 
-        $tamanho_json = count($pesquisaCliente);
-
-        $_SESSION['lista_cliente'. $id_busca] = $pesquisaCliente;
-        $json_final = json_encode($pesquisaCliente, JSON_PRETTY_PRINT);
+        $json_final = json_encode($pesquisaCliente["resultado"], JSON_PRETTY_PRINT);
         $file = fopen('../util/repository/json/resultSearchCliente.json', 'w');
         fwrite($file, $json_final);
         fclose($file);
 
-        var_dump($id_busca);
         if($tamanho_json > 0) {
             ?>
             <input type="hidden" id="id_pesquisa" value="<?= $id_busca ?>">
@@ -55,7 +52,12 @@ if(isset($_POST["nomecliente"]))
                     dataSrc: ""
                 },
                 createdRow: function (row, data, dataIndex) {
+                    var formAltera = row.childNodes[5].childNodes[0].childNodes[3].childNodes[1].childNodes[1]
+                    
+                    var id_pesquisa = $("#id_pesquisa").val();
 
+                    formAltera.childNodes[1].value = dataIndex;
+                    formAltera.childNodes[3].value = id_pesquisa;
                 },
                 autoWidth: false,
                 responsive: true,
@@ -117,22 +119,21 @@ if(isset($_POST["nomecliente"]))
                         orderable: false,
                         searchable: false,
                         defaultContent: `<div class="btn-group">
-                                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Opções
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><button id="btnAlterarItem" class="dropdown-item">Ver dados</button></li>
-                                                </ul>
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Opções
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <form action="cadastro-cliente" method="post" class="formAlterarCliente">
+                                                        <input type="hidden" name="cont" id="cont">
+                                                        <input type="hidden" name="id_pesquisa" id="id_pesquisa">
+                                                        <button id="btnAlterarItem" class="dropdown-item">Ver dados</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
                                         </div>`
                     }
                 ]
-            });
-
-            $('#tabelaImagem tbody').on('click', '#btnAlterarItem', function () {
-                var data = table.row($(this).parents('tr')).index();
-
-                var id_session = $("#id_session").val()
-                
             });
         </script>
         <?php

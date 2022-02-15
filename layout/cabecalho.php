@@ -23,6 +23,8 @@ require_once("../layout/toast-alert.php");
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 
     <link rel="stylesheet" href="web/css/projcss.css">
+
+    <link rel="stylesheet" href="web/css/bootstrap-datepicker.css">
 </head>
 <body>
   <div class="bodyContainer">

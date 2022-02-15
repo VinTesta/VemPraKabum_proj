@@ -63,8 +63,8 @@ class UsuarioDao
     #region SELECT
     public function select()
     {
-        return "&SELECT& 
-                        *
+        return "SELECT 
+                        &*&
                     FROM 
                         &usuario&";        
     }
@@ -76,7 +76,7 @@ class UsuarioDao
         $query = $this->select();
         $conexao = $this->_conn;
 
-        $query = str_replace("&SELECT&", "SELECT", $query);
+        $query = str_replace("&*&", " * ", $query);
         $query = str_replace("&usuario&", "usuario WHERE emailusuario = ?", $query);
         
         $paramBusca = filtraCampos($emailusuario, 1);
@@ -96,7 +96,7 @@ class UsuarioDao
     public function selectByIdUsuario($idusuario)
     {
         $query = $this->select();
-        $query = str_replace("&SELECT&", "SELECT", $query);
+        $query = str_replace("&*&", " * ", $query);
         $query = str_replace("&usuario&", "usuario WHERE idusuario = ?", $query);
         
         $stmt = mysqli_prepare($this->_conn, $query);

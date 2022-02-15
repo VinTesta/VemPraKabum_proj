@@ -32,7 +32,7 @@ require_once("../layout/cabecalho.php");
                             </div>
                             <div class="col-md-3 mb-4">
                                 <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-                                <input type="text" class="form-control data" id="dataNascimento">
+                                <input type="text" class="form-control datepicker" id="dataNascimento">
                             </div>
                             <div class="col-md-3 mb-4">
                                 <label for="cpfCliente" class="form-label">CPF:</label>
@@ -49,7 +49,6 @@ require_once("../layout/cabecalho.php");
                                 <input type="text" class="form-control celular" id="telefoneCliente">
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
