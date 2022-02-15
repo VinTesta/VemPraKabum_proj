@@ -37,27 +37,6 @@ $(document).ready(() =>
     })
     //#endregion
 
-    //#region VALIDA CAMPOS
-    function validaCampos(property)
-    {
-        var campos = $(property);
-        var erro = false;
-        for(var i=0; i < campos.length; i++)
-        {
-            if(campos[i].value == "")
-            {
-                campos[i].classList.add("invalidValue")
-                erro = true;
-            }
-            else
-            {
-                campos[i].classList.remove("invalidValue")
-            }
-        }
-        return erro;
-    }
-    //#endregion
-
     //#region LOGIN
     function login(campos)
     {
@@ -225,9 +204,7 @@ $(document).ready(() =>
             }
         })
     }
-    //#endregion
 
-    //#region BOTÃO DE ADICIONAR CAMPO DE ENDERECO DO CLIENTE
     $(document).on("click", "#btnAddEndereco", () => 
     {
         geraCamposEnderecoCliente("", "", "#bodyCardEndereco", $("#bodyCardEndereco")[0].children.length);
@@ -247,9 +224,6 @@ $(document).ready(() =>
     }
     //#endregion
 
-    //#region CARREGAR INFORMAÇÕES CLIENTE
-    //#endregion
-
     //#region BUTTON = btnSalvarCliente
     $(document).on("click", "#btnSalvarCliente", (e) =>
     {
@@ -259,15 +233,14 @@ $(document).ready(() =>
 
         $("#contEndereco").val($("#bodyCardEndereco")[0].children.length)
 
-        erroCpf = validaDocumento("#cpf", 1)
-        erroRg = validaDocumento("#rg", 2).then((res) => {console.log(res)});
-
-        console.log(erroCpf)
-        console.log(erroRg)
-        if(erro == true || erroCpf == true || erroRg == true)
+        if($("#contEndereco").val() <= 0)
         {
-            console.log(teste);
-            mostraMensagem("Há campos vazis ou com inválidos! Tente novamente!");
+            mostraMensagem("O cliente precisa ter no mínimo 1 endereço!");
+            return false;
+        }
+
+        if(erro == true)
+        {
             return false;
         }
 
@@ -276,34 +249,150 @@ $(document).ready(() =>
     })
     //#endregion
 
-    //#region 
-    async function validaDocumento(campo, opt)
-    {   
-        var doc = $(campo).val();
-        var erro = 0;
-        return await Promise.resolve($.ajax({
-                    type: "post",
-                    url: "util/valida-campos.php",
-                    data: {opt, doc},
-                    success: (res) =>
-                    {
-                        if(res == 1)
-                        {
-                            $(campo).removeClass("invalidValue")
-                            erro = false;
-                        }
-                        else
-                        {
-                            erro = true;
-                            $(campo).addClass("invalidValue")
-                        }
-                        
-                        return erro;
-                    },
-                    erro: (error) => 
-                    {
-                        console.log(error);
-                    }
-                }))
+    //#region VALIDAÇÃO DE CAMPOS PARÂMETRIZADOS
+    
+    function validaCampos(property)
+    {
+        var campos = $(property);
+        var erro = false;
+        for(var i=0; i < campos.length; i++)
+        {
+            switch(campos[i].dataset.validate)
+            {
+                case 'cpf':
+                    erro = validaCpf("#"+campos[i].id, erro);
+                    break;
+                case 'rg':
+                    erro = validaRg("#"+campos[i].id, erro);
+                    break;
+                case 'date':
+                    erro = validaData("#"+campos[i].id, erro);
+                    break;
+                case "tell":
+                    erro = validaTelefone("#"+campos[i].id, erro);
+                    break;
+            }
+
+            if(campos[i].value == "")
+            {
+                mostraMensagem("Há campos vazis ou invalidos!");
+                campos[i].classList.add("invalidValue")
+                erro = true;
+            }
+            else
+            {
+                campos[i].classList.remove("invalidValue")
+            }
+        }
+
+        console.log(erro);
+        return erro;
     }
+
+    function validaCpf(campo, erro)
+    {
+        var strCPF = $(campo).cleanVal()
+        var Soma;
+        var Resto;
+        Soma = 0;
+        
+        var erroFunc = false
+
+        if (strCPF == "00000000000") erroFunc = true;
+
+        for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+
+            if ((Resto == 10) || (Resto == 11))  Resto = 0;
+            if (Resto != parseInt(strCPF.substring(9, 10)) )  erroFunc = true;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11) ) ) erroFunc = true;
+
+        if(erroFunc)
+        {
+            $(campo)[0].classList.add("invalidValue");
+            mostraMensagem("CPF inválido!");
+            erro = erroFunc
+        }
+        else
+        {
+            $(campo)[0].classList.remove("invalidValue")
+        }
+
+        return erro;
+    }
+
+    function validaRg(campo, erro)
+    {
+        var strRG = $(campo).cleanVal()
+        
+        var erroFunc = false
+
+        if (strRG == "000000000" || strRG.length < 9) erroFunc = true;
+
+        if(erroFunc)
+        {
+            $(campo)[0].classList.add("invalidValue");
+            mostraMensagem("RG inválido!");
+            erro = erroFunc
+        }
+        else
+        {
+            $(campo)[0].classList.remove("invalidValue")
+        }
+
+        return erro;
+    }
+
+    function validaData(campo, erro)
+    {
+        var input = $(campo);
+        var strData = input.val();
+        strData = strData.replace("/", "").replace("/", "");
+        var erroFunc = false
+
+        if (strData.length < 8)erroFunc = true;
+
+        if(erroFunc)
+        {
+            $(campo)[0].classList.add("invalidValue");
+            mostraMensagem("Data Inválida!");
+            erro = erroFunc
+        }
+        else
+        {
+            $(campo)[0].classList.remove("invalidValue")
+        }
+
+        return erro;
+    }
+
+    function validaTelefone(campo, erro)
+    {
+        var strTell = $(campo).val();
+        strTell = strTell.replace("(", "").replace(")", "").replace("-", "");
+
+        var erroFunc = false
+        if (strTell.length < 11) erroFunc = true;
+
+        if(erroFunc)
+        {
+            $(campo)[0].classList.add("invalidValue");
+            mostraMensagem("Telefone Inválido!");
+            erro = erroFunc
+        }
+        else
+        {
+            $(campo)[0].classList.remove("invalidValue")
+        }
+
+        return erro;
+    }
+
+    //#endregion
 })

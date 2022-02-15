@@ -23,6 +23,8 @@ require_once("../layout/toast-alert.php");
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 
     <link rel="stylesheet" href="web/css/projcss.css">
+    
+    <link rel="stylesheet" href="web/css/bootstrap-datepicker.css">
 </head>
 <body>
     <div class="bodyContainer">
@@ -58,5 +60,8 @@ require_once("../layout/toast-alert.php");
     <!-- JQUERY MASK -->
     <script src="web/js/jquery.mask.min.js"></script>
     <script src="web/js/jquery.mask.js"></script>
+
+    <script src="web/js/bootstrap-datepicker.min.js"></script>
+    <script src="web/js/bootstrap-datepicker.pt-BR.min.js"></script>
 </body>
 </html>
