@@ -67,6 +67,9 @@ class ClienteDao
         $stmt->bindValue(":idcliente", $idcliente);
 
         $stmt->execute();
+        $erro = $stmt->errorInfo();
+
+        return array("erro" => $erro);
     }
     #endregion
 
@@ -81,6 +84,22 @@ class ClienteDao
     #endregion
 
     #region DELETE
+    public function delete($idcliente)
+    {
+        $query = "UPDATE 
+                        cliente
+                    SET 
+                        status = 0
+                    WHERE 
+                        idcliente = :idcliente";
+        
+        $stmt = $this->_conn->prepare($query);
+        $stmt->bindValue(":idcliente", $idcliente);
+
+        $stmt->execute();
+
+        return $stmt->errorInfo();
+    }
     #endregion
 
     #region BUSCA CLIENTE
@@ -177,12 +196,18 @@ class ClienteDao
 
         }
 
+        $camposQuery .= " AND status = 1";
+
         return array(
                     "camposQuery" => $camposQuery,
                     "retornosQuery" => $retornosQuery,
                     "params" => $params
                 );
     }
+    #endregion
+
+    #region VERIFICA DUPLICIDADE CPF
+    
     #endregion
 }
 #endregion

@@ -130,12 +130,16 @@ if(isset($_POST["nomecliente"]))
                                                         <button id="btnAlterarItem" class="dropdown-item">Ver dados</button>
                                                     </form>
                                                 </li>
+                                                <li>
+                                                    <button id="btnExcluirCliente" class="dropdown-item">Excluir registro</button>
+                                                </li>
                                             </ul>
                                         </div>`
                     }
                 ]
             });
         </script>
+        
         <?php
     }
     catch(Exception $ex)

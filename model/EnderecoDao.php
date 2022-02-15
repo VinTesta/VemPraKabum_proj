@@ -37,8 +37,8 @@ class EnderecoDao
     }
     #endregion
 
-    #region REMOVE
-    public function remove($idendereco)
+    #region DELETE
+    public function delete($idendereco)
     {
         $query = "UPDATE 
                         endereco
@@ -55,6 +55,39 @@ class EnderecoDao
 
     }
     #endregion
+    
+    #region UPDATE
+    public function update($idendereco, $params)
+    {
+        $query = "UPDATE
+                        endereco
+                    SET 
+                        logradouro = :logradouro,
+                        numero = :numero,
+                        bairro = :bairro,
+                        cidade = :cidade,
+                        estado = :estado,
+                        pais = :pais,
+                        cep = :cep
+                    WHERE 
+                        idendereco = :idendereco";
+
+        $stmt = $this->_conn->prepare($query);
+        $stmt->bindValue(":logradouro", filtraCampos($params["logradouro"], 2));
+        $stmt->bindValue(":bairro", filtraCampos($params["bairro"], 2));
+        $stmt->bindValue(":numero", filtraCampos($params["numero"], 2));
+        $stmt->bindValue(":cidade", filtraCampos($params["cidade"], 2));
+        $stmt->bindValue(":estado", filtraCampos($params["estado"], 2));
+        $stmt->bindValue(":cep", filtraCampos($params["cep"], 2));
+        $stmt->bindValue(":pais", filtraCampos($params["pais"], 2));
+        $stmt->bindvalue(":idendereco", $params["idendereco"]);
+
+        $stmt->execute();
+
+        return array("erro" => $stmt->errorInfo());
+    }
+    #endregion
+
     #region INSERT
     public function insert($params)
     {
@@ -139,12 +172,13 @@ class EnderecoDao
         {
             if($end["idendereco"] != "" && array_key_exists($end["idendereco"], $end_remove))
             {
+                $enderecos[] = $end_add[$key];
                 unset($end_add[$key]);
                 unset($end_remove[$end["idendereco"]]);
             }
         }
 
-        return array("adicionar" => $end_add, "remover" => $end_remove);
+        return array("adicionar" => $end_add, "remover" => $end_remove, "alt_endereco" => $enderecos);
     }
     #endregion
 }

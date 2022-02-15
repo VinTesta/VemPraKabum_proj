@@ -163,19 +163,29 @@ $(document).ready(() =>
 
     //#region BUSCA ENDERECO CEP
     
-    $(document).on("focusout", "#cepEndCliente", (e) =>
+    $(document).on("focusout", ".cepEndCliente", (e) =>
     {
-        buscaEnderecoViaCep(e.target.value);
+        buscaEnderecoViaCep(e.target.value, e.target);
     })
 
-    function buscaEnderecoViaCep(cep)
+    function buscaEnderecoViaCep(cep, component)
     {
         $.ajax({
             url: "http://viacep.com.br/ws/"+cep+"/json/ ",
             type: "get",
             data: {},
             success: (res) => {
-                console.log(res)
+                console.log(res);
+                var cardBody = component.parentNode.parentNode.parentNode
+                cardBody.getElementsByClassName("bairroEndCliente")[0].value = res.bairro
+                cardBody.getElementsByClassName("cidadeEndCLiente")[0].value = res.localidade
+                cardBody.getElementsByClassName("estadoEndCliente")[0].value = res.uf
+                cardBody.getElementsByClassName("logEndCliente")[0].value = res.logradouro
+                
+                if(res.cep != undefined)
+                {
+                    cardBody.getElementsByClassName("paisEndCliente")[0].value = "Brasil";
+                }
             },
             erro: (error) => 
             {
@@ -244,7 +254,6 @@ $(document).ready(() =>
             return false;
         }
 
-        return false;
         $("#formularioCliente").submit();
     })
     //#endregion
@@ -285,7 +294,6 @@ $(document).ready(() =>
             }
         }
 
-        console.log(erro);
         return erro;
     }
 
@@ -394,5 +402,34 @@ $(document).ready(() =>
         return erro;
     }
 
+    //#endregion
+
+    //#region ECLUIR CLIENTE
+    function excluirCliente(data, id_pesquisa)
+    {
+        $.ajax({
+            type: "POST",
+            url: "controller/remove-cliente.php",
+            data: {cont: data, id_pesquisa},
+            success: function (res) {
+                mostraMensagem(res);
+                $("#btnPesquisaCliente").trigger("click")    
+            }
+        });
+    }
+    
+    //#endregion
+
+    //#region BTNEXCLUIRCLIENTE
+    $(document).on('click', '#tabelaCliente #btnExcluirCliente', function () {
+        if(confirm("Confirmar exclusão do registro?"))
+        {
+            var data = table.row($(this).parents('tr')).index();
+
+            var id_pesquisa = $("#id_pesquisa").val()
+
+            excluirCliente(data, id_pesquisa);
+        }
+    });
     //#endregion
 })

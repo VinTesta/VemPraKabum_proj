@@ -17,7 +17,8 @@ CREATE TABLE cliente
     datanascimento DATE NOT NULL,
     cpf VARCHAR(11) NOT NULL,
     rg varchar(9) NOT NULL,
-    telefone VARCHAR(11) NOT NULL
+    telefone VARCHAR(11) NOT NULL,
+    status char default(1) NOT NULL
 );
 
 CREATE TABLE endereco

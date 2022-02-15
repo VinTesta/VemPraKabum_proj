@@ -24,6 +24,11 @@ if(isset($_POST["btnSalvarCliente"]))
                 $res_add_cli = $clienteDao->update($idCliente, $_POST);
                 $enderecos = $enderecoDao->comparaEnderecoCliente($idCliente, $enderecosCliente);
 
+                foreach($enderecos["alt_endereco"] as $alt_end)
+                {
+                    $end_alt = $enderecoDao->update($alt_end["idendereco"], $alt_end);
+                }
+
                 foreach($enderecos["adicionar"] as $key => $add)
                 {// ADICIONA NOVOS ENDEREÇOS
                     $res_end = $enderecoDao->insert($add);
@@ -33,8 +38,9 @@ if(isset($_POST["btnSalvarCliente"]))
 
                 foreach($enderecos["remover"] as $key => $remove)
                 {// REMOVE ENDEREÇOS
-                    $res_remov = $enderecoDao->remove($remove["idendereco"]);
+                    $res_remov = $enderecoDao->delete($remove["idendereco"]);
                 }
+
             }
         }   
         else
@@ -42,7 +48,7 @@ if(isset($_POST["btnSalvarCliente"]))
             $enderecosCliente = trataEnderecoForm($_POST, $_POST["contEndereco"]);
             if(count($enderecosCliente) > 0)
             {
-                $resultado_cliente = $clienteDao->insert($_POST);
+                $res_add_cli = $clienteDao->insert($_POST);
                 
                 foreach($enderecosCliente as $end)
                 {
@@ -53,7 +59,7 @@ if(isset($_POST["btnSalvarCliente"]))
             }
         }
 
-        if($resultado["erro"][1] == null)
+        if($res_add_cli["erro"][1] == null)
         {
             ?>
             <script>

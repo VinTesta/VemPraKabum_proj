@@ -33,11 +33,11 @@ switch($_POST["opt"])
                         <div class="row">
                             <div class="col-md-3 mb-4">
                                 <label for="cep<?=$cont?>" class="form-label">CEP:</label>
-                                <input type="text" name="cep<?=$cont?>" class="form-control force-check cep" id="cep<?=$cont?>" value="<?= $end["cep"] ?>">
+                                <input type="text" name="cep<?=$cont?>" class="form-control force-check cep cepEndCliente" id="cep<?=$cont?>" value="<?= $end["cep"] ?>">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="logradouro<?=$cont?>" class="form-label">Logradouro:</label>
-                                <input type="text" name="logradouro<?=$cont?>" class="form-control force-check" id="logradouro<?=$cont?>" value="<?= $end["logradouro"] ?>">
+                                <input type="text" name="logradouro<?=$cont?>" class="form-control force-check logEndCliente" id="logradouro<?=$cont?>" value="<?= $end["logradouro"] ?>">
                             </div>
                             <div class="col-md-3 mb-4">
                                 <label for="numero<?=$cont?>" class="form-label">Número:</label>
@@ -47,21 +47,21 @@ switch($_POST["opt"])
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label for="bairro<?=$cont?>" class="form-label">Bairro:</label>
-                                <input type="text" name="bairro<?=$cont?>" class="form-control force-check" id="bairro<?=$cont?>" value="<?= $end["bairro"] ?>">
+                                <input type="text" name="bairro<?=$cont?>" class="form-control force-check bairroEndCliente" id="bairro<?=$cont?>" value="<?= $end["bairro"] ?>">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="cidade<?=$cont?>" class="form-label">Cidade:</label>
-                                <input type="text" name="cidade<?=$cont?>" class="form-control force-check" id="cidade<?=$cont?>" value="<?= $end["cidade"] ?>">
+                                <input type="text" name="cidade<?=$cont?>" class="form-control force-check cidadeEndCliente" id="cidade<?=$cont?>" value="<?= $end["cidade"] ?>">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 mb-4">
                                 <label for="estado<?=$cont?>" class="form-label">UF:</label>
-                                <input type="text" name="estado<?=$cont?>" class="form-control force-check uf" id="estado<?=$cont?>" value="<?= $end["estado"] ?>">
+                                <input type="text" name="estado<?=$cont?>" class="form-control force-check uf estadoEndCliente" id="estado<?=$cont?>" value="<?= $end["estado"] ?>">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="pais<?=$cont?>" class="form-label">País:</label>
-                                <input type="text" name="pais<?=$cont?>" class="form-control force-check" id="pais<?=$cont?>" value="<?= $end["pais"] ?>">
+                                <input type="text" name="pais<?=$cont?>" class="form-control force-check paisEndCliente" id="pais<?=$cont?>" value="<?= $end["pais"] ?>">
                             </div>
                         </div>
                     </div>
@@ -87,11 +87,11 @@ switch($_POST["opt"])
                         <div class="row">
                             <div class="col-md-3 mb-4">
                                 <label for="cep0" class="form-label">CEP:</label>
-                                <input type="text" name="cep<?=$cont?>" class="form-control force-check cep" id="cep0" value="">
+                                <input type="text" name="cep<?=$cont?>" class="form-control force-check cep cepEndCliente" id="cep0" value="">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="logradouro0" class="form-label">Logradouro:</label>
-                                <input type="text" name="logradouro<?=$cont?>" class="form-control force-check" id="logradouro0" value="">
+                                <input type="text" name="logradouro<?=$cont?>" class="form-control force-check logEndCliente" id="logradouro0" value="">
                             </div>
                             <div class="col-md-3 mb-4">
                                 <label for="numero0" class="form-label">Número:</label>
@@ -101,21 +101,21 @@ switch($_POST["opt"])
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label for="bairro0" class="form-label">Bairro:</label>
-                                <input type="text" name="bairro<?=$cont?>" class="form-control force-check" id="bairro0" value="">
+                                <input type="text" name="bairro<?=$cont?>" class="form-control force-check bairroEndCliente" id="bairro0" value="">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="cidade0" class="form-label">Cidade:</label>
-                                <input type="text" name="cidade<?=$cont?>" class="form-control force-check" id="cidade0" value="">
+                                <input type="text" name="cidade<?=$cont?>" class="form-control force-check cidadeEndCliente" id="cidade0" value="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 mb-4">
                                 <label for="estado0" class="form-label">UF:</label>
-                                <input type="text" name="estado<?=$cont?>" class="form-control force-check uf" id="estado0" value="">
+                                <input type="text" name="estado<?=$cont?>" class="form-control force-check uf estadoEndCliente" id="estado0" value="">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="pais0" class="form-label">País:</label>
-                                <input type="text" name="pais<?=$cont?>" class="form-control force-check" id="pais0" value="">
+                                <input type="text" name="pais<?=$cont?>" class="form-control force-check paisEndCliente" id="pais0" value="">
                             </div>
                         </div>
                     </div>
