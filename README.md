@@ -34,6 +34,7 @@
 * O script para criação do banco se encontra na pasta raiz do projeto em: bancoDeDados/db_scriptCreation.sql
 * Nele se encontra o script de criação que vem junto um usuario para testes
 
-<h5>Pronto! O projeto já está criado e pode ser iniciado!</h5>
+<h4>Pronto! O projeto já está criado e pode ser iniciado!</h4>
 <p>Eu desenvolvi o projeto com PHP 7.4.13 e pode ser que não funcione em versões mais receentes apesar de não ter nenhum dependencia no projeto</p>
-
+<h4>Link para o download do projeto: https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/7.4.13/xampp-portable-windows-x64-7.4.13-1-VC15-installer.exe/download</h4>
+<h4>Ou você pode utiliza o executavel que deixei na raiz do projeto em: instalarXampp7-4-13-1/</h4>
