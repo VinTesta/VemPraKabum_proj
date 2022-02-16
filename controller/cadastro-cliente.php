@@ -1,8 +1,7 @@
 <?php
 require_once("../layout/dao-loader.php");
 
-$_POST["btnSalvarCliente"] = TRUE;
-if(isset($_POST["btnSalvarCliente"]))
+if(isset($_POST["nomecliente"]))
 {
     try
     {
@@ -64,6 +63,7 @@ if(isset($_POST["btnSalvarCliente"]))
             ?>
             <script>
                 localStorage.setItem("alerta", "Cadastro/Alteração realizado(a) com sucesso!");
+                location = "../pesquisa-cliente";
             </script>
             <?php
         }
@@ -72,6 +72,7 @@ if(isset($_POST["btnSalvarCliente"]))
             ?>
             <script>
                 localStorage.setItem("alerta", "Houve um erro ao fazer o(a) cadastro/alteração do usuario");
+                location = "../pesquisa-cliente";
             </script>
             <?php
         }
@@ -84,9 +85,10 @@ if(isset($_POST["btnSalvarCliente"]))
         ?>
         <script>
             localStorage.setItem("alerta", "Houve um erro no cadastro/alteração; Erro:".$ex);
+            location = "../pesquisa-cliente";
         </script>
         <?php
     }
 
-    redireciona("../pesquisa-cliente", []);
+    // redireciona("../pesquisa-cliente", []);
 }
