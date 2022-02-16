@@ -32,7 +32,7 @@
   
 <p>Para finalizar a instalação do seu projeto é necessario criar o banco de dados</p>
 * O script para criação do banco se encontra na pasta raiz do projeto em: bancoDeDados/db_scriptCreation.sql
-* Nele se encontra o script de criação que vem junto um usuario para testes:
+* Nele se encontra o script de criação que vem junto um usuario para testes:<br>
 * O login e senha do usuario é:<br>
   Login: admin@gmail.com<br>
   Senha: admin123
