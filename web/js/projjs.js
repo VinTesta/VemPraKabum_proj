@@ -14,7 +14,7 @@ $(document).ready(() =>
         $('.celular').mask('(00)00000-0000', {placeholder: "(__)_____-____"});
         $('.cep').mask('00000-000', {placeholder: "_____-___"});
         $('.numEnd').mask('00000', {placeholder: "_____"});
-        $('.uf').mask('AA', {placeholder: "_____"});
+        $('.uf').mask('AA', {placeholder: "__"});
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy'
         });
@@ -165,7 +165,10 @@ $(document).ready(() =>
     
     $(document).on("focusout", ".cepEndCliente", (e) =>
     {
-        buscaEnderecoViaCep(e.target.value, e.target);
+        if(e.target.value.replace("-", "").length > 0)
+        {
+            buscaEnderecoViaCep(e.target.value.replace("-", ""), e.target);
+        }
     })
 
     function buscaEnderecoViaCep(cep, component)
@@ -207,6 +210,8 @@ $(document).ready(() =>
             success: (res) => 
             {
                 $(div).append(res);
+
+                adicionaMascaras();
             },
             erro: (error) =>
             {

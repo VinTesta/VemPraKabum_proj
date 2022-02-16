@@ -1,29 +1,11 @@
 [
     {
-        "idcliente": "1",
-        "nomecliente": "VINICIUS TESTA PASSOS",
-        "datanascimento": "2022-02-15",
-        "cpf": "33882217073",
-        "rg": "289463385",
-        "telefone": "19987717410",
-        "status": "1"
-    },
-    {
-        "idcliente": "4",
-        "nomecliente": "TESTE CADASTRO",
+        "idcliente": "6",
+        "nomecliente": "ROBERTO SILVA",
         "datanascimento": "2022-02-01",
-        "cpf": "18303232029",
-        "rg": "226560909",
-        "telefone": "19454545454",
-        "status": "1"
-    },
-    {
-        "idcliente": "5",
-        "nomecliente": "TESTE 2 CAD",
-        "datanascimento": "2022-02-28",
         "cpf": "57932780012",
         "rg": "171464114",
-        "telefone": "19987717410",
+        "telefone": "19984521655",
         "status": "1"
     }
 ]
