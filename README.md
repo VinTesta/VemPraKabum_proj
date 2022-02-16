@@ -19,13 +19,16 @@
   
   <p>Caso não tenha o composer instalado, entre na documentação (https://getcomposer.org/) e instale-o antes de prosseguir</p>
   
-  * Para iniciar o composer no projeto
+* Para iniciar o composer no projeto
   <ul>
     <li>1° - Acesse um terminal no projeto</li>
     <li>2° - No terminal de os seguintes comandos:
       <ul>
-        <li>composer init <i>Apenas pule tudo que aparecer com enter</i></li>
+        <li>composer init <i>(Apenas pule tudo que aparecer com enter)</i></li>
         <li>composer install</li>
       </ul>
     <li>3° - Pronto seu projeto já está configurado</li>
   </ul>
+  
+<p>Para finalizar a instalação do seu projeto é necessario criar o banco de dados</p>
+* O script para criação do banco se encontra na pasta raiz do projeto em: 
