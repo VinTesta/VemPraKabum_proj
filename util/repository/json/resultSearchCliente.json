@@ -1,28 +1,28 @@
 [
     {
         "idcliente": "1",
-        "nomecliente": "ANTONIO SILVA",
-        "datanascimento": "2000-04-24",
-        "cpf": "1233211233",
-        "rg": "122113213",
-        "telefone": "19984455445",
+        "nomecliente": "VINICIUS TESTA PASSOS",
+        "datanascimento": "2022-02-15",
+        "cpf": "33882217073",
+        "rg": "289463385",
+        "telefone": "19987717410",
         "status": "1"
     },
     {
-        "idcliente": "2",
-        "nomecliente": "GABRIEL ANTONELO",
-        "datanascimento": "2002-10-15",
-        "cpf": "1632165465",
-        "rg": "171717177",
-        "telefone": "19988654654",
+        "idcliente": "4",
+        "nomecliente": "TESTE CADASTRO",
+        "datanascimento": "2022-02-01",
+        "cpf": "18303232029",
+        "rg": "226560909",
+        "telefone": "19454545454",
         "status": "1"
     },
     {
-        "idcliente": "27",
-        "nomecliente": "RENER SILVAS",
-        "datanascimento": "2004-04-15",
-        "cpf": "02286503052",
-        "rg": "505017982",
+        "idcliente": "5",
+        "nomecliente": "TESTE 2 CAD",
+        "datanascimento": "2022-02-28",
+        "cpf": "57932780012",
+        "rg": "171464114",
         "telefone": "19987717410",
         "status": "1"
     }

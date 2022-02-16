@@ -54,7 +54,7 @@ if(isset($_POST["btnSalvarCliente"]))
                 {
                     $resultado_end = $enderecoDao->insert($end);
 
-                    $resultado = $enderecoDao->insertEnderecoCliente($resultado_cliente["insertId"], $resultado_end["insertId"]);
+                    $resultado = $enderecoDao->insertEnderecoCliente($res_add_cli["insertId"], $resultado_end["insertId"]);
                 }
             }
         }

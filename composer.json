@@ -1,8 +1,8 @@
 {
-    "name": "vintesta/vem_pra_kabum_proj",
+    "name": "vinicius/vem-pra-kabum_proj",
     "autoload": {
         "psr-4": {
-            "Vintesta\\VemPraKabumProj\\": "src/"
+            "Vinicius\\VemPraKabumProj\\": "src/"
         }
     },
     "authors": [
