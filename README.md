@@ -1,6 +1,6 @@
 # VemPraKabum_proj
 <h3>Dev: Vinicius Testa Passos</h3>
-<b><h5>Projeto e intuito</h5></p>
+<b><h4>Projeto e intuito</h4></p>
 <p>Esse projeto foi desenvolvido com o intuito de avaliar e testar minhas habilidades</p>
 
 <b><h5>Como instalar e usar o projeto</h5></p>
