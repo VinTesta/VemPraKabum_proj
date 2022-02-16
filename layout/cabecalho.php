@@ -46,6 +46,9 @@ require_once("../layout/toast-alert.php");
                 <li><a class="dropdown-item" href="cadastro-cliente">Cadastrar</a></li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="controller/logout-usuario.php">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
