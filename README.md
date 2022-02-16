@@ -1,2 +1,2 @@
 # VemPraKabum_proj
-Projeto para avaliação técnica da KaBuM
+<h3>Dev: Vinicius Testa Passos</h3>
