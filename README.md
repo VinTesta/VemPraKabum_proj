@@ -9,10 +9,10 @@
 * Pelo terminal:
 <ul>
   <li>1° - Acesse a pasta onde ficara o projeto</li>
-  <li>2° - git clone https://github.com/VinTesta/VemPraKabum_proj.git</li>
+  <li>2° - git clone https://github.com/VinTesta/crud_clientes.git</li>
 </ul>
 
-* Caso utilize o github desktop ou ira clonar pelo editor, procure a documentação do seu editor (https://github.com/VinTesta/VemPraKabum_proj.git)
+* Caso utilize o github desktop ou ira clonar pelo editor, procure a documentação do seu editor (https://github.com/VinTesta/crud_clientes.git)
 
 <p>O projeto utiliza o Composer como gerenciador de pacotes<br> 
   Por isso deve ser executado alguns comandos para instalar as dependencias</p>
