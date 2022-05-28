@@ -38,5 +38,5 @@
   Senha: admin123
 
 <h4>Pronto! O projeto já está criado e pode ser iniciado!</h4>
-<p>Eu desenvolvi o projeto com PHP 7.4.13 e pode ser que não funcione em versões mais receentes apesar de não ter nenhuma dependencia no projeto</p>
+<p>O projeto foi desenvolvido com PHP 7.4.13 e pode ser que não funcione em versões mais recentes apesar de não ter nenhuma dependencia no projeto</p>
 <h4>Link para o download do PHP 7.4.13: https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/7.4.13/xampp-portable-windows-x64-7.4.13-1-VC15-installer.exe/download</h4>
